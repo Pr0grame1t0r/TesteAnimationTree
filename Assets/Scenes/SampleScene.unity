@@ -182,6 +182,14 @@ PrefabInstance:
       propertyPath: Direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7735201679550400352, guid: 3cb790a088939364f902d30cfcafafaf, type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735201679550400352, guid: 3cb790a088939364f902d30cfcafafaf, type: 3}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

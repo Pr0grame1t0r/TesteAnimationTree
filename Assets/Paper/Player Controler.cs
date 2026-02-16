@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class PlayerControler : MonoBehaviour
     public float speed;
 
     public float jumpForce;
+
+    public bool isJumping;
 
     public bool isGrounded;
 
@@ -34,6 +37,8 @@ public class PlayerControler : MonoBehaviour
             Direction = 1;
         }
         anim.SetFloat("Direção", Direction);
+
+        Jump();
     }
 
     void Movement()
@@ -43,5 +48,24 @@ public class PlayerControler : MonoBehaviour
 
         anim.SetFloat("Horizontal", movement.x);
         anim.SetFloat("Magnitude", movement.magnitude);
+    }
+
+    void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            isJumping = true;
+            rb.gravityScale = 0.6f;
+            Time.timeScale = 0.9f;
+            anim.SetTrigger("Jump");
+        }
+       
+       if(isJumping && rb.velocity.y < 0 && rb.gravityScale < 1.5f)
+        {
+            rb.gravityScale += Time.deltaTime;
+        }
+
+        anim.SetFloat("Vertical", rb.velocity.y);
     }
 }
